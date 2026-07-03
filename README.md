@@ -38,4 +38,4 @@
 
 ## Демо
 
-Откройте `index.html` в браузере.
+Откройте `index.html` в браузере или посмотрите на [https://landing-repair.netlify.app](https://landing-repair.netlify.app).
