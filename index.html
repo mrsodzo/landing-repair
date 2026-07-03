@@ -49,10 +49,10 @@
     .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
     .hero-content h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; }
     .hero-content p { font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9; }
-    .hero-image { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(135deg, #334155 0%, #475569 100%); display: flex; align-items: center; justify-content: center; }
-    .hero-image::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23334155" width="400" height="300"/><path fill="%23475569" d="M0 200L100 180L200 210L300 170L400 190V300H0Z"/><rect fill="%2364748b" x="50" y="220" width="80" height="80" rx="4"/><rect fill="%23f8fafc" x="65" y="235" width="50" height="50" rx="2"/></svg>'); background-size: cover; opacity: 0.3; }
+    .hero-image { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: url('https://images.unsplash.com/photo-1774716925810-e923c8206ed5?fm=jpg&q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; display: flex; align-items: center; justify-content: center; }
+    .hero-image::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(30,41,59,0.4), rgba(15,23,42,0.4)); z-index: 1; }
     .hero-image-overlay { position: relative; z-index: 2; text-align: center; padding: 2rem; }
-    .hero-image-overlay svg { width: 80px; height: 80px; margin-bottom: 1rem; opacity: 0.9; }
+    .hero-image-overlay svg { display: none; }
 
     /* Calculator */
     .calculator-section { position: relative; margin-top: -4rem; z-index: 10; padding-bottom: 0; }
@@ -202,10 +202,6 @@
         <a href="#calculator" class="btn btn-secondary">Получить расчёт бесплатно</a>
       </div>
       <div class="hero-image">
-        <div class="hero-image-overlay">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <p style="font-size:1.1rem;opacity:0.9;">Фото готового интерьера</p>
-        </div>
       </div>
     </div>
   </section>
@@ -303,20 +299,20 @@
       <p class="section-subtitle">Реальные результаты наших работ</p>
       <div class="gallery-grid" id="galleryGrid">
         <div class="comparison-slider" data-slider>
-          <div class="img-layer img-before">До</div>
-          <div class="img-layer img-after" style="clip-path: inset(0 50% 0 0);">После</div>
+          <div class="img-layer img-before" style="background-image:url('https://images.unsplash.com/photo-1753977725475-41b221add2c0?fm=jpg&q=80&w=800&auto=format&fit=crop');">До</div>
+          <div class="img-layer img-after" style="background-image:url('https://images.unsplash.com/photo-1774716925810-e923c8206ed5?fm=jpg&q=80&w=800&auto=format&fit=crop'); clip-path: inset(0 50% 0 0);">После</div>
           <div class="slider-handle" style="left:50%;"></div>
           <div class="labels"><span class="label">До</span><span class="label">После</span></div>
         </div>
         <div class="comparison-slider" data-slider>
-          <div class="img-layer img-before">До</div>
-          <div class="img-layer img-after" style="clip-path: inset(0 50% 0 0);">После</div>
+          <div class="img-layer img-before" style="background-image:url('https://images.unsplash.com/photo-1777575970247-6828e363f5f8?fm=jpg&q=80&w=800&auto=format&fit=crop');">До</div>
+          <div class="img-layer img-after" style="background-image:url('https://images.unsplash.com/photo-1757387240036-d7eb9b096c40?fm=jpg&q=80&w=800&auto=format&fit=crop'); clip-path: inset(0 50% 0 0);">После</div>
           <div class="slider-handle" style="left:50%;"></div>
           <div class="labels"><span class="label">До</span><span class="label">После</span></div>
         </div>
         <div class="comparison-slider" data-slider>
-          <div class="img-layer img-before">До</div>
-          <div class="img-layer img-after" style="clip-path: inset(0 50% 0 0);">После</div>
+          <div class="img-layer img-before" style="background-image:url('https://images.unsplash.com/photo-1603296389264-d5fd048bddcf?fm=jpg&q=80&w=800&auto=format&fit=crop');">До</div>
+          <div class="img-layer img-after" style="background-image:url('https://images.unsplash.com/photo-1706249591846-a8e421063585?fm=jpg&q=80&w=800&auto=format&fit=crop'); clip-path: inset(0 50% 0 0);">После</div>
           <div class="slider-handle" style="left:50%;"></div>
           <div class="labels"><span class="label">До</span><span class="label">После</span></div>
         </div>
