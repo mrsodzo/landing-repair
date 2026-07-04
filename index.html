@@ -387,7 +387,7 @@
             </div>
             <div class="form-group">
               <label for="phone">Телефон</label>
-              <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" required>
+              <input type="tel" id="phone" class="phone-mask" placeholder="+7 (999) 000-00-00" autocomplete="tel" required>
             </div>
           </div>
           <div class="form-group">
@@ -525,7 +525,7 @@
         </div>
         <div class="form-group">
           <label for="modalPhone">Телефон</label>
-          <input type="tel" id="modalPhone" required>
+            <input type="tel" id="modalPhone" class="phone-mask" placeholder="+7 (999) 000-00-00" autocomplete="tel" required>
         </div>
         <button type="submit" class="btn btn-primary">Отправить</button>
       </form>
@@ -626,6 +626,52 @@
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('nav');
     menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+
+    // Phone input mask +7 (___) ___-__-__
+    document.querySelectorAll('.phone-mask').forEach(input => {
+      const raw = () => input.value.replace(/\D/g, '').slice(0, 11);
+      const format = (digits) => {
+        const d = digits.slice(1);
+        let res = '+7';
+        if (d.length > 0) res += ' (' + d.slice(0, 3);
+        if (d.length >= 3) res += ') ' + d.slice(3, 6);
+        if (d.length >= 6) res += '-' + d.slice(6, 8);
+        if (d.length >= 8) res += '-' + d.slice(8, 10);
+        return res;
+      };
+      const apply = (keepCursor) => {
+        const digits = raw();
+        const was7 = digits.startsWith('7');
+        const base = was7 ? '7' + digits.slice(1) : digits;
+        const formatted = format(base);
+        const prev = input.value;
+        input.value = formatted;
+        if (keepCursor && formatted !== prev) {
+          const diff = formatted.length - prev.length;
+          let pos = input.selectionStart + diff;
+          pos = Math.max(0, Math.min(formatted.length, pos));
+          input.setSelectionRange(pos, pos);
+        }
+      };
+      input.addEventListener('input', () => apply(true));
+      input.addEventListener('focus', () => {
+        const digits = raw();
+        let base = digits.startsWith('7') ? digits : (digits.startsWith('8') ? '7' + digits.slice(1) : digits);
+        if (!base) { input.value = '+7 ('; input.setSelectionRange(4, 4); return; }
+        input.value = format(base);
+      });
+      input.addEventListener('blur', () => {
+        const digits = raw();
+        if (digits.length === 11 || (digits.length === 10 && !digits.startsWith('7'))) input.value = format(digits.startsWith('7') ? digits : '7' + digits);
+        else if (digits.length > 0 && digits.length < 11) apply(false);
+        else if (!digits) input.value = '';
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+          setTimeout(() => apply(false), 0);
+        }
+      });
+    });
 
     // Telegram mock notification
     function sendToTelegram(data) {
