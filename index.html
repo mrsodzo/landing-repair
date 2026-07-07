@@ -35,7 +35,7 @@
 
     /* Header */
     .header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; box-shadow: var(--shadow-sm); }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; position: relative; }
     .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
     .nav { display: flex; gap: 2rem; list-style: none; }
     .nav a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
@@ -163,16 +163,22 @@
       .timeline-dot { margin: 0; }
     }
     @media (max-width: 768px) {
-      .nav, .header-phone { display: none; }
+      .nav, .header-phone, .header-actions { display: none; }
       .menu-toggle { display: block; }
-      .header-actions .btn { display: none; }
       .calculator-grid { grid-template-columns: 1fr; }
       .services-grid, .gallery-grid, .reviews-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .header-inner { flex-wrap: wrap; }
       .nav.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); padding: 1rem; box-shadow: var(--shadow-sm); gap: 1rem; }
-      .header-phone.active { display: block; padding: 0 1rem; }
+      .header-actions.active { display: flex; flex-direction: column; position: absolute; top: calc(100% + 8rem); left: 0; right: 0; background: var(--white); padding: 0 1rem 1rem; gap: 1rem; }
+      .header-phone.active { display: block; }
+      .section { padding: 3rem 0; }
+      .hero-content h1 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+      .hero-content p { font-size: 1rem; }
+      .hero { padding-top: 70px; }
+      .btn { padding: 0.75rem 1.5rem; font-size: 0.95rem; }
+      .container { padding: 0 1rem; }
     }
   </style>
 </head>
@@ -625,7 +631,13 @@
     // Mobile menu
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('nav');
-    menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+    const headerActions = document.querySelector('.header-actions');
+    const headerPhone = document.querySelector('.header-phone');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      headerActions.classList.toggle('active');
+      headerPhone.classList.toggle('active');
+    });
 
     // Phone input mask +7 (___) ___-__-__
     document.querySelectorAll('.phone-mask').forEach(input => {
